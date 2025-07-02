@@ -21,7 +21,8 @@ $(document).ready(function () {
     });
 
     AOS.init({
-        easing: 'ease',
-        duration: 1800
+        easing: 'ease-out-cubic', // More refined easing
+        duration: 1000,           // Faster animation duration
+        once: true                // Animations happen once per element
     });
 });

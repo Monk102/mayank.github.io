@@ -198,7 +198,7 @@ li{
 
 .bar.start{
     transform-origin: right;
-    transition: transform 650ms cubic-bezier(.54,-.81,.57,.57);
+    transition: transform 0.45s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
 .open .bar.start{
@@ -207,7 +207,7 @@ li{
 .bar.end{
     align-self: flex-end;
     transform-origin: left;
-    transition: transform 650ms cubic-bezier(.54,-.81,.57,.57);
+    transition: transform 0.45s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 .open .bar.end{
     transform: rotate(-450deg) translateX(-.8rem);
@@ -243,7 +243,7 @@ li{
     height: 75%;
     width: 17%;
     top: 10%;
-    animation:move2 4s infinite;
+    animation: float-more-dynamic 5s ease-in-out infinite alternate;
     animation-delay: 0s;
 }
 .circle-img{
@@ -252,23 +252,20 @@ li{
     height: 11%;
     right: 0%;
     top: 30%;
-    animation:move 4s infinite;
-    animation-direction: initial;
-
+    animation: float-subtle 4s ease-in-out infinite alternate;
 }
 
 .landing-text .scrolldown{
     position: absolute;
     bottom: -20rem;
     left: 50%;
-    width: 40px;
-    height: 40px;
+    width: 24px; /* Adjusted for a single chevron */
+    height: 24px; /* Adjusted for a single chevron */
     background-color: rgba(255, 255, 255, 0);
-    transform: translateY(-80px) translateX(-50%)
-    rotate(45deg);
+    transform: translateY(-80px) translateX(-50%); /* Removed rotate for a standard chevron */
 }
 
- .scrolldown span{
+ .scrolldown span{ /* This will now be a single chevron */
     position: absolute;
     top: 0;
     left: 0;
@@ -277,39 +274,25 @@ li{
     height: 100%;
     border-bottom: 2px solid #fff ;
     border-right: 2px solid #fff ;
-    animation: animate 1.5s linear infinite;
-    opacity: 0;
+    transform: rotate(45deg); /* Rotate the square to form a chevron */
+    animation: refined-scroll-arrow 2s ease-in-out infinite;
+    opacity: 0; /* Initial state set by animation */
 }
 
-.scrolldown span:nth-child(1){
-    transform: translate(-15px, -15px);
-    animation-delay: -0.4s;
-}
-.scrolldown span:nth-child(2){
-    transform: translate(0, 0);
-    animation-delay: -0.2s;
-    
-}
-.scrolldown span:nth-child(3){
-    transform: translate(15px,15px);
-    animation-delay: 0s;
-}
+/* Removed -child selectors as we'll use a single span or style them identically if multiple are kept for visual stacking */
 
-@keyframes animate{
-    0%{
-        top: -5px;
-        left: -5px;
+@keyframes refined-scroll-arrow {
+    0% {
         opacity: 0;
+        transform: translateY(-10px) rotate(45deg) scale(0.8);
     }
-    25%{
-        top: 0px;
-        left: 0px;
+    50% {
         opacity: 1;
+        transform: translateY(0px) rotate(45deg) scale(1);
     }
-    50%, 100%{
-        top: 5px;
-        left: 5px;
+    100% {
         opacity: 0;
+        transform: translateY(10px) rotate(45deg) scale(0.8);
     }
 }
 /*End header*/
@@ -366,7 +349,11 @@ li{
 
 .social-media i{
     font-size: 5rem;
-    transition: color 650ms;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.social-media i:hover{
+    transform: translateY(-2px);
 }
 
 .fa-medium:hover{
@@ -396,7 +383,7 @@ li{
     height: 15%;
     top: 100%;
     right: 0%;
-    animation:move2 4s infinite;
+    animation: float-more-dynamic 5s ease-in-out infinite alternate;
 }
 
 
@@ -409,7 +396,7 @@ li{
     top: 70rem;
     height: 10%;
     width: 15%;
-    animation:move2 4s infinite;
+    animation: float-more-dynamic 5s ease-in-out infinite alternate;
 }
 
 .my-skills{
@@ -535,10 +522,12 @@ color:#c26700;
     font-size: 1.5rem;
     text-transform: uppercase;
     color: #2e89ff;
+    transition: color 0.3s ease, transform 0.3s ease;
 }
 
 .portfolio-description .cta:hover{
     color: #0059ff;
+    transform: translateY(-2px);
 }
 
 
@@ -625,7 +614,7 @@ color:#c26700;
     height: 50%;
     width: 20%;
     right: 0%;
-    animation:move 4s infinite;
+    animation: float-subtle 4s ease-in-out infinite alternate;
 }
 
 .contact-img{
@@ -633,8 +622,7 @@ color:#c26700;
     left: -10%;
     width: 15%;
     height: 15%;
-    animation:move2 4s infinite;
-
+    animation: float-more-dynamic 5s ease-in-out infinite alternate;
 }
 
 
@@ -686,60 +674,32 @@ color:#c26700;
 /*End footer*/
 
 /*Start animations*/
-@keyframes move{
-    0% {
-		transform: scale(0.95);
-		box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.7);
-	}
-
-	70% {
-		transform: scale(1);
-		box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
-	}
-
-	100% {
-		transform: scale(0.95);
-		box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
-	}
-  
+@keyframes float-subtle {
+    0%, 100% {
+        transform: translateY(0) scale(0.98);
+    }
+    50% {
+        transform: translateY(-3px) scale(1);
+    }
 }
-@keyframes move1{
-    0% {
-		transform: scale(1.05);
-		box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.7);
-	}
 
-	70% {
-		transform: scale(1);
-		box-shadow: 10 0 0 0px rgba(0, 0, 0, 0);
-	}
-
-	100% {
-		transform: scale(1.05);
-		box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
-	}
-  
+@keyframes float-more-dynamic {
+    0%, 100% {
+        transform: translateY(0) scale(1) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-6px) scale(1.03) rotate(1deg);
+    }
+    75% {
+        transform: translateY(-3px) scale(1.01) rotate(-0.5deg);
+    }
 }
-@keyframes move2{
-    100% {
-		transform: scale(1.15);
-		box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
-	}
 
-	70% {
-		transform: scale(1);
-		box-shadow: 10 0 0 0px rgba(0, 0, 0, 0);
-	}
+/* Removed move, move1, move2 keyframes as they are replaced by float-subtle and float-more-dynamic */
 
-	0% {
-		transform: scale(1.15);
-		box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.7);
-	}
-  
-}
 @keyframes pulse{
     0%{
-        box-shadow: 0 0 0 0 rgba(253,87,191,.99);
+        box-shadow: 0 0 0 0 rgba(253, 87, 191, 0.99);
     }
     70%{
         box-shadow: 0 0 0 0 rgba(253,87,191,0);
